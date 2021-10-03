@@ -6,7 +6,7 @@ import os
 from functools import wraps
 import requests
 from gtts import gTTS
-from pyrogram import Client
+from pyrogram import Client, idle
 api_key = os.environ.get("api_key","3f36c7420b88957") # bot token
 token = os.environ.get("bot_token","2048630384:AAHZZS4M4XtFm8SdOmArfVKWzESucKJPGiQ") # api key from https://ocr.space/ocrapi
 
