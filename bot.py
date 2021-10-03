@@ -59,7 +59,7 @@ def button(update,context):
     query.edit_message_text("Extracting text please wait ...")
     data=requests.get(f"https://api.ocr.space/parse/imageurl?apikey={api_key}&url={filepath}&language={query.data}&detectOrientation=True&filetype=JPG&OCREngine=1&isTable=True&scale=True")
     data=data.json()
-    if data['IsErroredOnProcessing']==False:
+    if data['IsErroredOnProcessing']==True:
         message=data['ParsedResults'][0]['ParsedText']
         tts = gTTS(message, lang='en')
         tts.save('mk.mp3')
