@@ -59,15 +59,16 @@ def button(update,context):
     query.edit_message_text("Extracting text please wait ...")
     data=requests.get(f"https://api.ocr.space/parse/imageurl?apikey={api_key}&url={filepath}&language={query.data}&detectOrientation=True&filetype=JPG&OCREngine=1&isTable=True&scale=True")
     data=data.json()
+    print(data)
     if data:
         message=data['ParsedResults'][0]['ParsedText']
+	query.edit_message_text(f"{message}")
         tts = gTTS(message, lang='en')
         tts.save('mk.mp3')
         with open('mk.mp3', 'rb') as speech:
             query.sendChatAction(chat_id, 'UPLOAD_AUDIO')
             query.sendVoice(chat_id, voice=speech, caption=None)
-            speech.close()	
-            query.edit_message_text(f"{message}")
+            speech.close()
     else:
         query.edit_message_text(text="⚠️Something went wrong, please try again ⚠️")
 
