@@ -5,6 +5,7 @@ import logging
 import os
 from functools import wraps
 import requests
+from gtts import gTTS
 
 api_key = os.environ.get("api_key","") # bot token
 token = os.environ.get("bot_token","") # api key from https://ocr.space/ocrapi
