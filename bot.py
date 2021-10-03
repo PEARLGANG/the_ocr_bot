@@ -88,7 +88,8 @@ def main():
     dp.add_handler(CommandHandler('start',start))
     dp.add_handler(MessageHandler(Filters.photo, convert_image))
     dp.add_handler(CallbackQueryHandler(button))
-    app.start
+    app.start()
+    app.idle()
     updater.start_polling(clean=True)
     updater.idle()
  
