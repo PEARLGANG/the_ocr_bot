@@ -52,11 +52,11 @@ def convert_image(update,context):
         update.message.reply_text('Select Language : ', reply_markup=reply_markup)
 
 @run_async
-def button(update,context, message):
+def button(message,update,context):
     filepath=context.user_data['filepath']
     query = update.callback_query
     query.answer()
-    query.edit_message_text("Extracting text please wait ...")
+    m = message.reply("Extracting text please wait ...")
     data=requests.get(f"https://api.ocr.space/parse/imageurl?apikey={api_key}&url={filepath}&language={query.data}&detectOrientation=True&filetype=JPG&OCREngine=1&isTable=True&scale=True")
     data=data.json()
     print(data)
