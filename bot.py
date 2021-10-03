@@ -52,7 +52,7 @@ def convert_image(update,context):
         update.message.reply_text('Select Language : ', reply_markup=reply_markup)
 
 @run_async
-def button(message,update,context):
+def button(message, update, context):
     filepath=context.user_data['filepath']
     query = update.callback_query
     query.answer()
