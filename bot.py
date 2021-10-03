@@ -89,7 +89,6 @@ def main():
     dp.add_handler(MessageHandler(Filters.photo, convert_image))
     dp.add_handler(CallbackQueryHandler(button))
     bot.start
-    bot.idle()
     updater.start_polling(clean=True)
     updater.idle()
  
