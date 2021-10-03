@@ -51,8 +51,9 @@ def convert_image(update,context):
         reply_markup = InlineKeyboardMarkup(keyboard)
         update.message.reply_text('Select Language : ', reply_markup=reply_markup)
 
+V = message, update, context
 @run_async
-def button(message, update, context):
+def button({V}):
     filepath=context.user_data['filepath']
     query = update.callback_query
     query.answer()
