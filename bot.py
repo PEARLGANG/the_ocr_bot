@@ -3,6 +3,7 @@ from telegram.ext.dispatcher import run_async
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters,CallbackQueryHandler,PicklePersistence
 import logging
 import os
+import telepot
 from functools import wraps
 import requests
 from gtts import gTTS
@@ -65,8 +66,8 @@ def button(update,context):
         tts = gTTS(message, lang='en')
         tts.save('mk.mp3')
         with open('mk.mp3', 'rb') as speech:
-            query.sendChatAction(chat_id, 'UPLOAD_AUDIO')
-            query.sendVoice(chat_id, voice=speech, caption=None)
+            bot.sendChatAction(chat_id, 'UPLOAD_AUDIO')
+            bot.sendVoice(chat_id, voice=speech, caption=None)
             speech.close()
     else:
         query.edit_message_text(text="⚠️Something went wrong, please try again ⚠️")
@@ -74,11 +75,14 @@ def button(update,context):
 persistence=PicklePersistence('userdata')
 def main(): 
     bot_token=token
+    bot = telepot.Bot(token)
     updater = Updater(bot_token,use_context=True,persistence=persistence)
     dp=updater.dispatcher
     dp.add_handler(CommandHandler('start',start))
     dp.add_handler(MessageHandler(Filters.photo, convert_image))
     dp.add_handler(CallbackQueryHandler(button))
+    bot.start
+    bot.idle()
     updater.start_polling(clean=True)
     updater.idle()
  
