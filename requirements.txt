@@ -4,3 +4,4 @@ requests
 gTTS
 telepot
 Googletrans
+pyrogram
