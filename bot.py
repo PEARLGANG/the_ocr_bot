@@ -65,8 +65,8 @@ def button(update,context):
         tts = gTTS(message, lang='en')
         tts.save('mk.mp3')
         with open('mk.mp3', 'rb') as speech:
-            bot.sendChatAction(chat_id, 'UPLOAD_AUDIO')
-            bot.sendVoice(chat_id, voice=speech, caption=None)
+            app.sendChatAction(chat_id, 'UPLOAD_AUDIO')
+            app.sendVoice(chat_id, voice=speech, caption=None)
             speech.close()
     else:
         query.edit_message_text(text="⚠️Something went wrong, please try again ⚠️")
@@ -76,7 +76,7 @@ def main():
     bot_token=token
     API_ID = "1888138"
     API_HASH = "82426a55e53c4c3003db9d7f5971cbed"
-    bot = Client(
+    app = Client(
         "bot",
         api_id=API_ID,
         api_hash=API_HASH,
@@ -88,7 +88,7 @@ def main():
     dp.add_handler(CommandHandler('start',start))
     dp.add_handler(MessageHandler(Filters.photo, convert_image))
     dp.add_handler(CallbackQueryHandler(button))
-    bot.start
+    app.start
     updater.start_polling(clean=True)
     updater.idle()
  
