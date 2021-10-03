@@ -67,7 +67,6 @@ def button(update,context):
         with open('mk.mp3', 'rb') as speech:
             query.sendChatAction(chat_id, 'UPLOAD_AUDIO')
             query.sendVoice(chat_id, voice=speech, caption=None)
-	    query.edit_message_text(f"{message}")
             speech.close()
     else:
         query.edit_message_text(text="⚠️Something went wrong, please try again ⚠️")
