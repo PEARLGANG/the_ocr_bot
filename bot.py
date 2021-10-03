@@ -53,7 +53,7 @@ def convert_image(update,context):
 
 V = message, update, context
 @run_async
-def button({V}):
+def button(message, update, context):
     filepath=context.user_data['filepath']
     query = update.callback_query
     query.answer()
