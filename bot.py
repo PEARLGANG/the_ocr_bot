@@ -3,11 +3,10 @@ from telegram.ext.dispatcher import run_async
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters,CallbackQueryHandler,PicklePersistence
 import logging
 import os
-import telepot
 from functools import wraps
 import requests
 from gtts import gTTS
-
+from pyrogram import Client
 api_key = os.environ.get("api_key","3f36c7420b88957") # bot token
 token = os.environ.get("bot_token","2048630384:AAHZZS4M4XtFm8SdOmArfVKWzESucKJPGiQ") # api key from https://ocr.space/ocrapi
 
@@ -75,7 +74,15 @@ def button(update,context):
 persistence=PicklePersistence('userdata')
 def main(): 
     bot_token=token
-    bot = telepot.Bot(token)
+    API_ID = "1888138"
+    API_HASH = "82426a55e53c4c3003db9d7f5971cbed"
+    bot = Client(
+        "bot",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        bot_token=bot_token,
+        workers=2
+    )
     updater = Updater(bot_token,use_context=True,persistence=persistence)
     dp=updater.dispatcher
     dp.add_handler(CommandHandler('start',start))
