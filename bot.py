@@ -52,7 +52,7 @@ def convert_image(update,context):
         update.message.reply_text('Select Language : ', reply_markup=reply_markup)
 
 @run_async
-def button(update,context,message):
+def button(update,context, message):
     filepath=context.user_data['filepath']
     query = update.callback_query
     query.answer()
@@ -61,8 +61,8 @@ def button(update,context,message):
     data=data.json()
     print(data)
     if data:
-        message=data['ParsedResults'][0]['ParsedText']
-        tts = gTTS(message, lang='en')
+        m=data['ParsedResults'][0]['ParsedText']
+        tts = gTTS(m, lang='en')
         tts.save('mk.mp3')
         with open('mk.mp3', 'rb') as speech:
             message.reply_audio(chat_id, voice=speech, caption=None)
