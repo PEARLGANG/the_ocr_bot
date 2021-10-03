@@ -37,5 +37,5 @@ jobs:
          timeout-minutes: 500
          continue-on-error: true
          run: |
-           python3 -m bot.py
+           python3 -m bot
            echo "Magic Happened!!!!"
